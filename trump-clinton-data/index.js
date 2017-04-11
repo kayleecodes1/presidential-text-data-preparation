@@ -7,14 +7,19 @@ import config from './config.js';
 function fix_string_for_import(str) {
 
 	return str
+		// Remove backslashes.
+		.replace(/\\/gi, '')
+		// Replace ellipses.
+		.replace(/\.\.\./g, ' ')
+		.replace(/\./g, '. ')
         // Normalize single quotes.
         .replace(/[\u0027\u0060\u00B4\u2018\u2019]/gi, '\'')
         // Remove double quotes.
-        .replace(/[\u0022\u201C\u201D]/gi, '')
+        .replace(/[\u0022\u201C\u201D]/gi, ' ')
         // Remove non-ASCII.
-        .replace(/[^\u0000-\u007F]/gi, '')
+        .replace(/[^\u0000-\u007F]/gi, ' ')
         // Remove transcript annotations.
-        .replace(/\((Applause|Laughter|Inaudible)\.\)/g, '')
+        .replace(/\((Applause|Laughter|Inaudible)\.\)/g, ' ')
         // Replace multiple spaces with a single space.
         .replace(/[ ][ ]*/g, ' ');
 }
@@ -44,7 +49,7 @@ for (const name of ['trump', 'clinton']) {
 					document_id,
 		    		delivery_date: speechData.date,
 		    		full_text: fix_string_for_import(speechData.text),
-		    		title: speechData.title,
+		    		title: fix_string_for_import(speechData.title),
 		    		speaker_speaker_id: speaker_id
 		    	});
 		    	exportData.speaker_documents.push({
