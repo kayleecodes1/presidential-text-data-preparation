@@ -1,0 +1,23 @@
+{
+  "name": "scraper",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "babel-node ./primary-data/index.js",
+    "convert": "babel-node ./primary-data/convert-to-mysql-import.js",
+    "trump-clinton": "babel-node ./trump-clinton-data/index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "babel-cli": "^6.23.0",
+    "babel-plugin-transform-es2015-destructuring": "^6.23.0",
+    "babel-polyfill": "^6.23.0",
+    "babel-preset-es2015": "^6.22.0",
+    "babel-preset-stage-0": "^6.22.0",
+    "cheerio": "^0.22.0",
+    "json2csv": "^3.7.3",
+    "request": "^2.79.0"
+  }
+}
